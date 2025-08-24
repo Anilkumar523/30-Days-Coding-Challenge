@@ -1,0 +1,16 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        s=set()
+        while True:
+            count=0
+            while n>0:
+                nums=n%10
+                count+=nums*nums
+                n=n//10
+            if count==1:
+                return True
+            elif count in s:
+                return False
+            else:
+                s.add(count)
+                n=count
