@@ -1,0 +1,26 @@
+from typing import List
+
+class Solution:
+    def splitArray(self, nums: List[int], k: int) -> int:
+        def canSplit(nums, k, maxSum):
+            subarrays = 1
+            current = 0
+            for num in nums:
+                if current + num > maxSum:
+                    subarrays += 1
+                    current = num
+                    if subarrays > k:
+                        return False
+                else:
+                    current += num
+            return True
+        low, high = max(nums), sum(nums)
+        
+        while low < high:
+            mid = (low + high) // 2
+            if canSplit(nums, k, mid):
+                high = mid   
+            else:
+                low = mid + 1  
+        
+        return low

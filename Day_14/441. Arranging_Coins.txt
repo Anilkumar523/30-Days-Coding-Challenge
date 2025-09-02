@@ -1,0 +1,13 @@
+class Solution:
+    def arrangeCoins(self, n: int) -> int:
+        l=1
+        h=n
+        ans=0
+        while l<=h:
+            mid=(l+h)//2
+            if mid*(mid+1)//2<=n:
+                ans=mid 
+                l=mid+1
+            else:
+                h=mid-1
+        return ans
